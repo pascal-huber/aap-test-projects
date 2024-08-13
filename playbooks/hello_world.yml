@@ -13,3 +13,13 @@
     - ansible.builtin.debug:
         msg: "no vault_secret found"
       when: vault_secret is undefined
+
+    - ansible.builtin.debug:
+      # Note: The API path for this value is: "/v1/secret/data/hashi_secret"
+        msg: >-
+          hashi_secret {{
+            lookup(
+              'community.hashi_vault.vault_kv1_get',
+              'hashi_secret'
+            )
+          }}
