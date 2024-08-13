@@ -20,6 +20,6 @@
           hashi_secret {{
             lookup(
               'community.hashi_vault.hashi_vault',
-              'secret=hashi_secret'
+              'secret=data/hashi_secret'
             )
           }}
