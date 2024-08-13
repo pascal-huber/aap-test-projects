@@ -19,7 +19,7 @@
         msg: >-
           hashi_secret {{
             lookup(
-              'community.hashi_vault.vault_kv1_get',
-              'hashi_secret'
+              'community.hashi_vault.hashi_vault',
+              'secret=hashi_secret'
             )
           }}
