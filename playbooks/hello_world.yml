@@ -21,7 +21,7 @@
           hashi_secret {{
             lookup(
               'community.hashi_vault.hashi_vault',
-              'secret=secret/data/hashi_secret',
+              'secret=secret/data/hashi_secret:message',
               namespace='admin'
             )
           }}
