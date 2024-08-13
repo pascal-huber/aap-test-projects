@@ -3,22 +3,16 @@
   vars_files:
     - ../files/vault.yml
   tasks:
-    - ansible.builtin.debug:
-        msg: "hello world"
 
-    - ansible.builtin.debug:
-        msg: "vault secret: {{ vault_secret }}"
-      when: vault_secret is defined
-
-    - ansible.builtin.debug:
-        msg: "no vault_secret found"
-      when: vault_secret is undefined
-
-    - failed_when: false
+    - name: Print Message from local Vault
       ansible.builtin.debug:
+        msg: "vault secret: {{ vault_secret }}"
+
+    - name: Print Message from HashiCorp Vault
       # Note: The API path for this value is: "/v1/secret/data/hashi_secret"
+      ansible.builtin.debug:
         msg: >-
-          hashi_secret {{
+          {{
             lookup(
               'community.hashi_vault.hashi_vault',
               'secret=secret/data/hashi_secret:message',
