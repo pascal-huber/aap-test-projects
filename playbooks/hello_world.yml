@@ -1,5 +1,15 @@
 - name: "hello world playbook"
-  hosts: all
+  hosts: localhost
+  vars_files:
+    - ../files/vault.yml
   tasks:
     - ansible.builtin.debug:
         msg: "hello world"
+
+    - ansible.builtin.debug:
+        msg: "vault secret: {{ vault_secret }}"
+      when: vault_secret is defined
+
+    - ansible.builtin.debug:
+        msg: "no vault_secret found"
+      when: vault_secret is undefined
